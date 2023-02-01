@@ -1,0 +1,76 @@
+--somma di due matrici quadrate
+am :: Fractional a => [[a]] -> [[a]] -> [[a]]
+am [] [] = []
+am a b = [zipWith (+) (head a) (head b)] ++ am (tail a) (tail b)
+-------------------------------------------------------------------
+--sottrazione di due matrici quadrate
+sm :: Fractional a => [[a]] -> [[a]] -> [[a]]
+sm [] [] = []
+sm a b = [zipWith (-) (head a) (head b)] ++ sm (tail a) (tail b)
+--------------------------------------------------------------------
+--moltiplicazione di matrici
+--funzione che prese le due matrici inverte la seconda in modo che le righe siano colonne e nel prodotto faccio il prodotto "riga per riga"
+mm :: Fractional a => [[a]] -> [[a]] -> [[a]]
+mm f g = mmt f (tsp g)
+--funzione che fa il prodotto tra tutte le righe e tutte le colonne
+mmt :: Fractional a => [[a]] -> [[a]] -> [[a]]
+mmt [] _ = []
+mmt (f:fs) g = cr f g : mmt fs g
+--funzione che fa il prodotto tra una riga e le colonne della matrice
+cr :: Fractional a => [a] -> [[a]] -> [a]
+cr _ [] = []
+cr f (g:gs) = cc f g : cr f gs
+--funzione che fa il prodotto scalare tra due righe
+cc :: Fractional a => [a] -> [a] -> a
+cc f g = sum (zipWith (*) f g)
+--end moltiplicazione di matrici
+--------------------------------------------------------------
+--funzione che calcola la trasposta di una matrice 2x2
+tsp :: Fractional a => [[a]] -> [[a]]
+tsp b = m 
+        where
+      a11 = head(head b)
+      a22 = head(tail(head(tail b)))
+      a12 = head(head(tail b))
+      a21 = head(tail (head b))
+      r1 = [a11] ++ [a12] 
+      r2 = [a21] ++ [a22]
+      m = [r1] ++ [r2]
+-----------------------------------------------------------------
+--funzione che calcola l'inversa di una matrice 2x2
+inv :: Fractional a => [[a]] -> [[a]]
+inv b  = m
+      where
+      d = det b
+      a11 = (head(tail(head(tail b))))/d
+      a22 = (head(head b))/d
+      a12 = (negate(head(tail (head b))))/d
+      a21 = (negate(head(head(tail b))))/d
+      r1 = [a11] ++ [a12] 
+      r2 = [a21] ++ [a22]
+      m = [r1] ++ [r2]
+--------------------------------------------------------------------
+--funzione che calcola il determinante di una matrice 2x2
+det :: Fractional a => [[a]] -> a
+det b = (((b !! 0) !! 0) * ((b !! 1) !! 1)) - (((b !! 1) !! 0) * ((b !! 0) !! 1))
+--------------------------------------------------------------------
+--calcolo ricorsivo dell'equazione alle differenze di riccati con in input le matrici f (matrice dello stato), h (matrice dell'uscita), v1 (matrice di varianza covarianza dell'errore sullo stato), v2 (matrice di varianza covarianza dell'errore sull'uscita)  
+differencericcatiequation :: Fractional a => Integer -> [[a]] -> [[a]] -> [[a]] -> [[a]] -> [[[a]]]
+differencericcatiequation t f h v1 v2 = dre t f (tsp f) h (tsp h) v1 v2
+--funzione di appoggio per non ricalcolare ogni volta le trasposte
+dre :: Fractional a => Integer -> [[a]] -> [[a]] -> [[a]] -> [[a]] -> [[a]] -> [[a]] -> [[[a]]]
+dre 0 f ft h ht v1 v2 = [v1]
+dre t f ft  h ht v1 v2 = pt : p
+                        where
+                        p = dre (t-1) f ft h ht v1 v2
+                        pt = am (sm (mm f (mm (head p) ft))  (mm f (mm (head p) (mm ht (mm (inv (am (mm h (mm (head p) ht)) v2)) (mm h (mm (head p) ft))))))) v1
+                        
+
+main :: IO ()
+main = do
+    let f = [[1,2],[3,4]]
+    let h = [[1,0],[0,1]]
+    let v1 = [[1,0], [0,2]]
+    let v2 = [[2,0], [0,1]]
+    let t = 3
+    print $ differencericcatiequation t f h v1 v2
