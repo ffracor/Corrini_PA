@@ -1,13 +1,28 @@
 package stanze;
 
 import mostri.FactoryMostro;
-import mostri.MostroInterface;
+import mostri.Mostro;
+import mostri.boss.Rhapthorne;
 
 public class Stanza1 extends Stanza{
+	
 
+	public Stanza1(StanzaInterface s)
+	{
+		nome = "Canale sotterraneo";
+		successiva = s;
+		precedente = null;
+	}
+	
+	
 	@Override
-	public MostroInterface creaMostro() 
+	public Mostro creaMostro() 
 	{
 		return FactoryMostro.getFactoryMostro().getMostro(this);
+	}
+
+	@Override
+	public Rhapthorne creaBoss() {
+		return new Rhapthorne();
 	}
 }

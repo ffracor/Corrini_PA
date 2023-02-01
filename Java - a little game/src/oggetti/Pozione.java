@@ -7,5 +7,7 @@ public class Pozione extends Cura
 		PV = 20;
 		nome = "Pozione";
 		descrizione = "Cura 20 PV";
+		costo = 10;
 	}
+
 }

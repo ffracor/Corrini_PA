@@ -1,6 +1,7 @@
 package mostri;
 
 import oggetti.OggettoInterface;
+import personaggi.PersonaggioInterface;
 
 public interface MostroInterface 
 {
@@ -12,8 +13,9 @@ public interface MostroInterface
 	public boolean riceviAttacco(int danno);
 	
 	//ottiene il drop dal mostro
-	public OggettoInterface getDrop() throws SenzaOggettoException;
+	public OggettoInterface getDrop(PersonaggioInterface p) throws SenzaOggettoException;
 	public int getExp();
+	public int getDenaro();
 	
 	public String getNome();
 	
