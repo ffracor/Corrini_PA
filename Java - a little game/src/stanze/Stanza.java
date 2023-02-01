@@ -85,7 +85,7 @@ public abstract class Stanza implements StanzaInterface
 	}
 	
 	@Override
-	public boolean Battaglia(PersonaggioInterface p)
+	public boolean battaglia(PersonaggioInterface p)
 	{
 		countBattaglie++;
 		return battle(p, creaMostro());

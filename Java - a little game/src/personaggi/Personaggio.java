@@ -59,7 +59,8 @@ public abstract class Personaggio implements PersonaggioInterface
 			System.out.println("Cosa vuoi fare?");
 			System.out.println("1-Usare un oggetto");
 			System.out.println("2-Ordinare l'inventario");
-			System.out.println("3-Chiudere l'inventario");
+			System.out.println("3-Leggere la descrizione dell'oggetto"); 
+			System.out.println("4-Chiudere l'inventario");
 		
 			scelta = Input.getInput().readInt();
 			
@@ -73,7 +74,11 @@ public abstract class Personaggio implements PersonaggioInterface
 				case 2: 
 						Collections.sort(inventario);
 						break;
-				case 3: break;
+				case 3: System.out.println("Seleziona oggetto");
+						int o1 = Input.getInput().readInt();
+						System.out.println("Descrizione: " + inventario.get(o1));
+						break;
+				case 4: break;
 				default: System.out.println("inserire valore valido");
 			}
 		}while(scelta <= 0 || scelta > 3);
@@ -81,12 +86,12 @@ public abstract class Personaggio implements PersonaggioInterface
 	
 	@Override
 	public void usaOggetto(OggettoInterface o) {
-		o.Usa(this);
+		o.usa(this);
 	}
 
 	@Override
 	public int attacco() {
-		return attacco;
+		return attacco + arma.getAttacco();
 	}
 
 	@Override

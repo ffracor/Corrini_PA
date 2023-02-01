@@ -6,7 +6,7 @@ import personaggi.PersonaggioInterface;
 
 public interface StanzaInterface 
 {
-	public boolean Battaglia(PersonaggioInterface p);
+	public boolean battaglia(PersonaggioInterface p);
 	public boolean bossBattle(PersonaggioInterface p);
 	public MostroInterface creaMostro();
 	public BossInterface creaBoss();

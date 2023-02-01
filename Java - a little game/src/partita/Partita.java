@@ -61,7 +61,7 @@ public class Partita
 			int i = Input.getInput().readInt();
 			switch(i)
 			{
-				case 1: if (s.Battaglia(p)) return; break;
+				case 1: if (s.battaglia(p)) return; break;
 				case 2: Negozio.getNegozio().menuNegozio(p); break;
 				case 3: if(s.bossAvibile()) {if(s.bossBattle(p)) return;}
 						else if(s.stanzaSuccessivaAvible()) s= s.getStanzaSuccessiva();
@@ -73,8 +73,8 @@ public class Partita
 						{
 							if(!s.finalBattle(p)) System.out.println("Complimenti! Hai completato il gioco!");
 							return;
-						};
-						break;
+						}
+						else return;
 			};
 		}
 	}

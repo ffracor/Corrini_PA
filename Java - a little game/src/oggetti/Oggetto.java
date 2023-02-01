@@ -1,6 +1,7 @@
 package oggetti;
 
 import oggetti.armi.ArmaInterface;
+import personaggi.PersonaggioInterface;
 
 public abstract class Oggetto implements OggettoInterface
 {
@@ -22,6 +23,12 @@ public abstract class Oggetto implements OggettoInterface
 	public int getCosto()
 	{
 		return costo;
+	}
+	
+	@Override 
+	public void usa(PersonaggioInterface p)
+	{
+		System.out.println("Non puoi usare questo oggetto");
 	}
 	
 	@Override
