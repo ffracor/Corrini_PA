@@ -7,15 +7,24 @@
  */
 
 
-#include "GradientDescent.h"
+#include "..\ottimizzazione\GradientDescent.h"
 #include "..\modelli\ARMA.h"
 #include "..\modelli\AR.h"
 #include "..\modelli\MA.h"
-
 #include <cmath>
 #include <vector>
 #include <memory>
 
+//definizione delle varie funzioni di ottimizzazione
+//spiegazione del funzionamento
+//ogni derivata (della y, dell'ingresso o dell'errore) può essere calcolata ricorsivamente con
+//una formula. sommando per ogni dato il prodotto della derivata per l'errore si ottiene la derivata
+//totale della funzione di costo (la funzione di costo è la varianza dell'errore di predizione,
+//calcolata come sommatoria del quadrato della differenza di un dato y dal valore del suo
+//predittore ad un passo)
+//l'algoritmo chiama se stesso tante volte quanto specificato e ad ogni iterazione aggiorna i
+//parametri del modello in base al valore delle derivate. L'algoritmo cerca il minimo della
+//funzione di costo, ovvero il valore dei parametri che minimizza la varianza dell'errore
 void GradientDescent::ottimizza(ARMA* modello, std::unique_ptr<std::vector<double>> &dati, int n, int iterazioni, double alpha)
 {
 	if (iterazioni == 0) return;

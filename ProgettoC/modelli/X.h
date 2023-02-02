@@ -12,13 +12,14 @@
 #include <memory>
 #include <vector>
 
+//funzione di trasferimento non stocastica (non è un processo stocastico)
 class X
 {
 	protected:
-	double b;
+	double b; //parametro
 
 	public:
-	X(): X(0){}
+	X(): X(0){} //liste di inizializzazione
 	X(double B): b(B){}
 	double getB() {return b;}
 	void setB(double B) {b = B;}

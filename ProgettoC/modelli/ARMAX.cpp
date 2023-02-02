@@ -9,6 +9,8 @@
 #include <iostream>
 #include "..\ottimizzazione\GradientDescent.h"
 
+//ridefinizione (e combinazione) di alcune delle funzioni delle superclassi.
+//vedere ARMA.cpp per le descrizioni
 double ARMAX::previsioneAdUnPasso(double yt, double ut)
 {
 	(*y_hat) = ARMA::previsioneAdUnPasso(yt) + X::previsioneAdUnPasso(ut);

@@ -18,6 +18,7 @@ class ProcessoStocastico
 	double wn_variance;
 
 	public:
+	//costruttore con lista di inizializzazione
 	//distruttore virtual -> rende virtual tutti quelli delle sottoclassi
 	ProcessoStocastico(double wnm, double wnv): wn_mean(wnm), wn_variance(wnv){}
 	virtual ~ProcessoStocastico(){}
@@ -32,9 +33,11 @@ class ProcessoStocastico
 	virtual double previsioneAdUnPasso(double yt){return 0;}
 	virtual void stampaProcesso(){}
 
+	//metodi set
 	virtual void setVarianza(double var) {wn_variance = var;}
 	virtual void setMedia(double mean) {wn_mean = mean;}
 
+	//metodo per simulare il modello
 	virtual double simulaModello(double values[] = NULL){return 0;}
 };
 

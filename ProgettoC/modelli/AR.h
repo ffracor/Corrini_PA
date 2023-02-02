@@ -10,6 +10,8 @@
 
 #include "ARMA.h"
 
+//AR non è un sottotipo di ARMA ma può riutilizzare parte del codice. usa quindi ereditarietà privata
+//ridefinendo solo il metodi necessari
 class AR: private ARMA
 {
 	public:

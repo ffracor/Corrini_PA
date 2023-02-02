@@ -11,6 +11,8 @@
 #include "ARMA.h"
 #include "X.h"
 
+//eredita e combina i metodi di ARMA e X. E' un sottotipo di entrambi e riutilizza la maggior
+//parte del codice
 class ARMAX: public ARMA, public X
 {
 	public:

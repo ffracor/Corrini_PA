@@ -10,6 +10,8 @@
 #include "..\ottimizzazione\GradientDescent.h"
 #include <memory>
 #include <vector>
+
+//metodi di calcolo e di stampa
 double X::previsioneAdUnPasso(double ut)
 {
 	return b*ut;

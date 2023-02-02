@@ -12,6 +12,8 @@
 #include <memory>
 #include <vector>
 #include <iostream>
+
+//formule di calcolo (cfr IMAD)
 double ARMA::calcolaMedia()
 {
 	return (1+c)*wn_mean/(1-a);
@@ -35,6 +37,13 @@ double ARMA::previsioneAdUnPasso(double yt)
 	return (*y_hat);
 }
 
+//usa l'algoritmo gradient descent (definito nella omonima classe) per stimare i parametri del modello
+//prende il riferimento ad uno unique ptr nello stack del chiamante. in questo modo quando lo stack
+//del chiamante è deallocato si evita memory leak con lo smart pointer
+//alpha è il learning rate del GD e iterazioni il numero di volte che l'algoritmo è eseguito iterativamente
+//inoltre il processo senza media è definito come unique ptr cosi quando si termina la stima
+//viene deallocato automaticamente. I dati sono passati come vector poiché mette a disposizione
+//gli iteratori che sono molto comodi
 void ARMA::stimaParametri(std::unique_ptr<std::vector<double>> &y, int n, int iterazioni, double alpha)
 {
 	GradientDescent gd;
@@ -52,6 +61,7 @@ void ARMA::stampaProcesso()
 
 }
 
+//simulazione del modello generando un white noise casuale
 double ARMA::simulaModello(double values[])
 {
 	std::normal_distribution<double> distribution(wn_mean, sqrt(wn_variance));
@@ -61,6 +71,7 @@ double ARMA::simulaModello(double values[])
 	return ris;
 }
 
+//metodo che elimina la media dai dati per eseguire la stima del modello
 double ARMA::detrend(std::unique_ptr<std::vector<double>> &y, std::unique_ptr<std::vector<double>> &det, int n)
 {
 		double media = 0;

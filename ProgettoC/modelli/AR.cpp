@@ -9,6 +9,8 @@
 #include <random>
 #include "..\ottimizzazione\GradientDescent.h"
 
+
+//ridefinizione dei metodi necessari
 double AR::getA()
 {
 	return ARMA::getA();

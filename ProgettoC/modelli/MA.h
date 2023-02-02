@@ -10,6 +10,8 @@
 #ifndef MODELLI_MA_H_
 #define MODELLI_MA_H_
 
+//AR non è un sottotipo di ARMA ma può riutilizzare parte del codice. usa quindi ereditarietà privata
+//ridefinendo solo il metodi necessari
 class MA: private ARMA
 {
 	public:

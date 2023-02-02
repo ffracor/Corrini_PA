@@ -17,7 +17,10 @@
 
 #include <memory>
 
-
+//mette a disposizione le funzioni per ottimizzare il modello
+//ogni modello ha la sua poiché per ogni modello devono essere stimati dei parametri diversi
+//e siccome il gradient descent si basa sul gradiente (derivata) e queste sono dipendenti le une
+//dai parametri delle altre deve essere definita una funzione per ogni modello con parametri differenti
 class GradientDescent
 {
 	public:
