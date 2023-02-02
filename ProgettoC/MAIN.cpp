@@ -40,7 +40,6 @@ template <typename T> shared_ptr<vector<double>> simulaModello(T modello, int n)
 template <typename T> shared_ptr<vector<double>> simulaModello(T modello, int n, unique_ptr<vector<double>> &ingresso)
 {
 	shared_ptr<vector<double>> simulazione(new vector<double>(n));
-	(*simulazione)[0] = 0;
 	double v[2];
 	for(int i = 1; i < n; i++)
 	{
@@ -99,7 +98,7 @@ int main()
 	armax.stampaProcesso();
 
 	//utilizzo il vettore y precedente come ingresso esogeno per l'armax
-	shared_ptr<vector<double>> simx = simulaModello(armax, n, y);
+	shared_ptr<vector<double>> simx = simulaModello(armax,n,y);
 	unique_ptr<vector<double>> yx = std::make_unique<vector<double>>(n);// (new vector<double>(n));
 	for(int i = 0; i < n; i++) (*yx)[i] = (*simx)[i];
 
