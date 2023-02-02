@@ -7,6 +7,7 @@ import oggetti.armi.Chronicle2;
 import personaggi.Guerriero;
 import personaggi.PersonaggioInterface;
 
+//definisce il boss seymour (stanza2)
 public class Seymour implements BossInterface{
 
 	int PV = 70;

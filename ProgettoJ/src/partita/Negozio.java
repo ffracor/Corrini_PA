@@ -9,6 +9,7 @@ import oggetti.armi.BraccialePlatino;
 import oggetti.armi.ReIsola;
 import personaggi.PersonaggioInterface;
 
+//gestisce il negozio dove acquistare oggetti. è singleton perché ce n'è uno solo
 public class Negozio 
 {
 	private static Negozio n = null;
@@ -31,8 +32,11 @@ public class Negozio
 		System.out.println("4 - Bracciale di platino: 150 zehn");
 		System.out.println("0 - Esci dal negozio");
 		
+		//il giocatoer sceglie che oggetto comprare
 		int i = Input.getInput().readInt();
 		OggettoInterface o;
+		//sulla base della scelta se il personaggio ha sufficiente denaro potrà acquistare
+		//l'oggetto e metterlo nell'inventario
 		switch(i)
 		{
 			case 1: o = new Pozione();

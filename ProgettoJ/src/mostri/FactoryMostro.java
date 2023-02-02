@@ -7,8 +7,11 @@ import stanze.Stanza1;
 import stanze.Stanza2;
 import stanze.Stanza3;
 
+//classe secondo il factory pattern che quando invocata restituisce un mostro casuale in 
+//base alla stanza
 public class FactoryMostro 
 {
+	//singleton pattern per avere una sola istanza
 	static FactoryMostro fm = null;
 	private FactoryMostro(){}
 	
@@ -19,7 +22,7 @@ public class FactoryMostro
 		return fm;
 	}
 	
-	//Pseudo Visitor Pattern (dispatch sulla stanza)
+	//in base alla stanza viene scelto il metodo adeguato che restituisce specifici mostri
 	public Mostro getMostro(Stanza1 s)
 	{
 		int N = (int) (Math.random()*3 - 0.001);

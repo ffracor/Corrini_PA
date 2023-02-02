@@ -4,6 +4,7 @@ import mostri.SenzaOggettoException;
 import oggetti.OggettoInterface;
 import personaggi.PersonaggioInterface;
 
+//definisce il boss grifone (stanza3)
 public class Grifone implements BossInterface{
 
 	int PV = 100;

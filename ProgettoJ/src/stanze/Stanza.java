@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import mostri.MostroInterface;
 import mostri.SenzaOggettoException;
+import mostri.boss.BossInterface;
 import mostri.boss.GenioOscuro;
 import oggetti.OggettoInterface;
 import partita.Input;
@@ -11,11 +12,12 @@ import personaggi.PersonaggioInterface;
 
 public abstract class Stanza implements StanzaInterface
 {
+	//campi di una stanza
 	protected String nome;
-	protected StanzaInterface successiva;
+	protected StanzaInterface successiva; //utilizzati per muoversi fra le stanze
 	protected StanzaInterface precedente;
-	protected int countBattaglie;
-	protected boolean bossSconfitto;
+	protected int countBattaglie; //il boss è disponibile quando si ha vinto almeno 10 battaglie
+	protected boolean bossSconfitto; //la stanza successiva è disponibile solo se è true
 	
 	public Stanza()
 	{
@@ -29,12 +31,13 @@ public abstract class Stanza implements StanzaInterface
 		precedente = s;
 	}
 
+	//avvia la battaglia finale con il genio oscuro
 	@Override
 	public boolean finalBattle(PersonaggioInterface p) {
 		return battle(p, new GenioOscuro());
 	}
 
-	
+	//per muoversi fra le stanze
 	@Override
 	public StanzaInterface getStanzaPrecedente()
 	{
@@ -46,6 +49,7 @@ public abstract class Stanza implements StanzaInterface
 		return successiva;
 	}
 	
+	//definisce se si può visitare la stanza successiva
 	@Override
 	public boolean stanzaSuccessivaAvible()
 	{
@@ -84,6 +88,7 @@ public abstract class Stanza implements StanzaInterface
 		return false;
 	}
 	
+	//battaglia
 	@Override
 	public boolean battaglia(PersonaggioInterface p)
 	{
@@ -111,6 +116,8 @@ public abstract class Stanza implements StanzaInterface
 		
 			switch(i)
 			{
+				//si attacca. se il mostro muore ritorna true, si aggiornano le statistiche
+				//del personaggio e si ritorna false (che indica che non si è morti)
 				case 1: System.out.println("Attacchi il mostro!");
 						if(m.riceviAttacco(p.attacco()))
 						{
@@ -129,6 +136,7 @@ public abstract class Stanza implements StanzaInterface
 							p.aggiungiDenaro(m.getDenaro());
 							return false;
 						};
+						//il nemico attacca, se il mostro ti uccide si ritorna true e la partita finisce
 						System.out.println("Il mostro ti colpisce!");
 						if(p.riceviAttacco(m.attacco()))
 						{
@@ -139,6 +147,7 @@ public abstract class Stanza implements StanzaInterface
 						}
 						break;
 				case 2:
+						//utilizzo dell'inventario. successivamente il mostro attacca
 					 	System.out.println("Apri l'inventario..");
 						p.gestioneInventario();
 						
@@ -151,8 +160,18 @@ public abstract class Stanza implements StanzaInterface
 							return true;
 						}
 						break;
-				case 3: System.out.println("Sei fuggito!");
-						return false;
+						//gestione della fuga, la battaglia non viene contata e dal boss non si fugge
+				case 3: if(m instanceof BossInterface) 
+						{
+							System.out.println("Non puoi fuggire dal boss!");
+							break;
+						}
+						else
+						{
+							countBattaglie--;
+							System.out.println("Sei fuggito!");
+							return false;
+						}
 				default: System.out.println("Comando errato");
 			}
 		}

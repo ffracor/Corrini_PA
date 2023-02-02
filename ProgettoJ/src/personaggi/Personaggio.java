@@ -9,8 +9,10 @@ import oggetti.OggettoInterface;
 import oggetti.armi.ArmaInterface;
 import partita.Input;
 
+//implementa il codice base del personaggio che sarà riutilizzato dalle varie classi
 public abstract class Personaggio implements PersonaggioInterface
 {
+	//campi di un personaggio per gestire i livelli, vita, attacco, denaro, arma, inventario
 	protected int PV;
 	protected int PVMax;
 	protected ArmaInterface arma;
@@ -19,16 +21,15 @@ public abstract class Personaggio implements PersonaggioInterface
 	protected int exp;
 	protected int attacco;
 	protected int denaro;
-	
 	protected ArrayList<OggettoInterface> inventario;
-	
+	//necessario sia globale per la lambda function
 	private int i;
 	
 	public int getPV()
 	{
 		return PV;
 	}
-	
+	//costruttore che inizializza il personaggio
 	public Personaggio()
 	{
 		attacco = 5;
@@ -38,6 +39,7 @@ public abstract class Personaggio implements PersonaggioInterface
 		denaro = 0;
 		exp = 0;
 		PV = PVMax;
+		livello = 0;
 	}
 	
 	@Override
@@ -46,14 +48,17 @@ public abstract class Personaggio implements PersonaggioInterface
 		if (PV > PVMax) PV = PVMax;
 	}
 	
+	//permette di eseguire operazioni con l'inventario e gli oggetti
 	@Override
 	public void gestioneInventario() {
 		
+		//usa lambda function per stampare gli oggetti dell'inventario
 		i = 0;
 		System.out.println("Inventario: ");
 		inventario.stream().forEach(x -> {System.out.println(i + " - " + x.getNome()); i++;});
 		int scelta;
 
+		//operazioni possibili
 		do
 		{
 			System.out.println("Cosa vuoi fare?");
@@ -72,7 +77,7 @@ public abstract class Personaggio implements PersonaggioInterface
 						this.usaOggetto(o);
 						break;
 				case 2: 
-						Collections.sort(inventario);
+						Collections.sort(inventario); //uso il metodo di collections e il compareTo di oggetto
 						break;
 				case 3: System.out.println("Seleziona oggetto");
 						int o1 = Input.getInput().readInt();
@@ -81,9 +86,10 @@ public abstract class Personaggio implements PersonaggioInterface
 				case 4: break;
 				default: System.out.println("inserire valore valido");
 			}
-		}while(scelta <= 0 || scelta > 3);
+		}while(scelta <= 0 || scelta > 4);
 	}
 	
+	//overload
 	@Override
 	public void usaOggetto(OggettoInterface o) {
 		o.usa(this);
@@ -101,6 +107,7 @@ public abstract class Personaggio implements PersonaggioInterface
 		return false;
 	}
 
+	//overload
 	@Override
 	public void usaOggetto(int i) {
 		if(inventario.get(i) instanceof ArmaInterface) usaOggetto(inventario.get(i));
@@ -112,6 +119,7 @@ public abstract class Personaggio implements PersonaggioInterface
 		inventario.add(o);	
 	}
 
+	//gestione dei livelli e dell'esperienza
 	@Override
 	public void aggiungiExp(int exp) {
 		this.exp -= exp;

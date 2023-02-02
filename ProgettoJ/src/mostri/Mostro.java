@@ -3,6 +3,8 @@ package mostri;
 import oggetti.OggettoInterface;
 import personaggi.PersonaggioInterface;
 
+//un mostro ha i metodi per attaccare e subire un attacco
+//poiché i PV devono essere decrementati non si poteva usare solo il record (che è final)
 public class Mostro implements MostroInterface
 {
 	protected int PV;

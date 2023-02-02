@@ -2,6 +2,7 @@ package oggetti;
 
 import personaggi.PersonaggioInterface;
 
+//override del metodo usa specificando cosa fa una cura (aggiorna i PV)
 public abstract class Cura extends Oggetto
 {
 	protected int PV;

@@ -5,6 +5,8 @@ import oggetti.armi.ArmaInterface;
 
 public interface PersonaggioInterface 
 {
+	//metodi di un personaggio per attaccare, ricevere attacco, utilizzare oggetti, equipaggiare
+	//armi, aggiornare statistiche ecc.
 	public int attacco();
 	public boolean riceviAttacco(int danno);
 	public void equipaggiaArma();

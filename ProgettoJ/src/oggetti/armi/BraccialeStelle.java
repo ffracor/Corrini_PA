@@ -1,5 +1,6 @@
 package oggetti.armi;
 
+//implementazione di un bracciale
 public class BraccialeStelle extends Bracciale
 {
 	public BraccialeStelle()

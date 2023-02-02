@@ -1,12 +1,9 @@
 package partita;
-import mostri.FactoryMostro;
-import stanze.Stanza;
-import stanze.Stanza1;
 
+//unicamente il mail che lancia una partita
 public class AVVIO {
 	public static void main(String[] args) {
 		Partita partita = new Partita();
 		partita.game();
-	}
-	
+	}	
 }	

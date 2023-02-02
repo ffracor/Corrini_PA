@@ -9,15 +9,19 @@ import oggetti.armi.BraccialeBandito;
 import oggetti.armi.Spada;
 import partita.Input;
 
+//definisce i metodi specifici del mago
 public class Mago extends Personaggio
 {
 	private int i;
 
 	public Mago()
 	{
+		//arma iniziale del mago
 		arma = new BraccialeBandito();
 		inventario.add(arma);
 	}
+	//metodo per cambiare equipaggiamento, seleziona dall'inventario con una lambda function
+	//i bracciali che il mago può equipaggiare
 	@Override
 	public void equipaggiaArma() {
 		i = 0;

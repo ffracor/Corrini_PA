@@ -1,5 +1,6 @@
 package oggetti.armi;
 
+//implementazione di una spada
 public class Chronicle2 extends Spada
 {
 	public Chronicle2()

@@ -4,6 +4,7 @@ import mostri.SenzaOggettoException;
 import oggetti.OggettoInterface;
 import personaggi.PersonaggioInterface;
 
+//definisce il boss genio oscuro (finale)
 public class GenioOscuro implements BossInterface
 {
 	int PV = 200;

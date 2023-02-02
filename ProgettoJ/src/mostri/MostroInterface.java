@@ -12,11 +12,10 @@ public interface MostroInterface
 	//aggiornando i PV
 	public boolean riceviAttacco(int danno);
 	
-	//ottiene il drop dal mostro
+	//ottiene il drop dal mostro l'esperienza il denaro e il nome
 	public OggettoInterface getDrop(PersonaggioInterface p) throws SenzaOggettoException;
 	public int getExp();
 	public int getDenaro();
-	
 	public String getNome();
 	
 }

@@ -1,5 +1,6 @@
 package oggetti.armi;
 
+//implementazione di una spada
 public class ReIsola extends Spada
 {
 	public ReIsola()

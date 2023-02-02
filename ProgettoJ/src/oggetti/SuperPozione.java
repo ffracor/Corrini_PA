@@ -1,5 +1,6 @@
 package oggetti;
 
+//simile a pozione ma è una superpozione
 public class SuperPozione extends Cura
 {
 	public SuperPozione()

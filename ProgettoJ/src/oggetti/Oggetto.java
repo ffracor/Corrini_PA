@@ -3,8 +3,13 @@ package oggetti;
 import oggetti.armi.ArmaInterface;
 import personaggi.PersonaggioInterface;
 
+//definisce il codice generale degli oggetti che può essere riutilizzato da altre classi
+//implementa compareTo per permettere l'ordinamento: gli oggetti generici vengono prima delle armi,
+//per il resto si usa l'ordine alfabetico
 public abstract class Oggetto implements OggettoInterface
 {
+	//campi di un oggetto, protected per essere visibili alle sottoclassi che ereditano il codice
+	//e che li ridefiniscono
 	protected String nome;
 	protected String descrizione;
 	protected int costo;

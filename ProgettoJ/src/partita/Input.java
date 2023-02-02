@@ -3,6 +3,7 @@ package partita;
 import java.io.IOException;
 import java.util.Scanner;
 
+//classe singleton utilizzata nel codice per inserire interi da console
 public class Input {
 	
 	private Scanner sc;
@@ -22,8 +23,6 @@ public class Input {
 	public int readInt()
 	{
 		int i = sc.nextInt();
-		//sc.close();
-
 		return i;		
 	}
 

@@ -16,10 +16,13 @@ public class Guerriero extends Personaggio
 	
 	public Guerriero()
 	{
+		//arma iniziale del guerriero
 		arma = new LamaDelDeserto();
 		inventario.add(arma);
 	}
 
+	//metodo per cambiare equipaggiamento, seleziona dall'inventario con una lambda function
+	//le spade che il guerriero può equipaggiare
 	@Override
 	public void equipaggiaArma() {
 		i = 0;

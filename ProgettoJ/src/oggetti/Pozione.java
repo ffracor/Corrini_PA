@@ -1,5 +1,6 @@
 package oggetti;
 
+//ridefinisce cura solo con il costruttore per inizializzare i campi
 public class Pozione extends Cura
 {
 	public Pozione()

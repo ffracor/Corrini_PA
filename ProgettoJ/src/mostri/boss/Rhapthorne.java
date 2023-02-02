@@ -4,6 +4,7 @@ import mostri.SenzaOggettoException;
 import oggetti.OggettoInterface;
 import personaggi.PersonaggioInterface;
 
+//definisce il boss rhapthorne (stanza 1)
 public class Rhapthorne implements BossInterface{
 
 	int PV = 50;
