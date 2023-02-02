@@ -14,8 +14,12 @@
 class ARMAX: public ARMA, public X
 {
 	public:
-	double predizioneAdUnPasso(double yt, double ut);
-
+	ARMAX(): ARMA(0,0,0,1), X(0){}
+	ARMAX(double a, double b, double c, double wnm, double wnv): ARMA(a,c,wnm,wnv), X(b){}
+	double previsioneAdUnPasso(double yt, double ut);
+	void stimaParametri(std::unique_ptr<std::vector<double>> &y, std::unique_ptr<std::vector<double>> &u, int n, int iterazioni = 250, double = 0.00001);
+	void stampaProcesso();
+	double simulaModello(double values[]);
 };
 
 #endif /* MODELLI_ARMAX_H_ */
