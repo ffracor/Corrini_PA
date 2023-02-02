@@ -24,7 +24,7 @@ class X
 	double getB() {return b;}
 	void setB(double B) {b = B;}
 	double previsioneAdUnPasso(double ut);
-	void stimaParametri(std::unique_ptr<std::vector<double>> &y, std::unique_ptr<std::vector<double>> &u, int n, int iterazioni = 250, double alpha = 0.00001);
+	void stimaParametri(std::unique_ptr<std::vector<double>> &y, std::unique_ptr<std::vector<double>> &u, int n, int iterazioni = 250, double alpha = 0.1);
 	void stampaProcesso();
 };
 

@@ -45,7 +45,7 @@ class ARMA: public ProcessoStocastico
 	double calcolaAutoCovarianza(int tau);
 
 	//stima del modello e previsione. definiti valori standard per iterazioni e learning rate alpha
-	void stimaParametri(std::unique_ptr<std::vector<double>> &y, int n, int iterazioni = 250, double alpha = 0.00001);
+	void stimaParametri(std::unique_ptr<std::vector<double>> &y, int n, int iterazioni = 250, double alpha = 0.1);
 	double previsioneAdUnPasso(double yt);
 	void stampaProcesso();
 

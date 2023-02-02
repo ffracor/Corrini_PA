@@ -48,9 +48,10 @@ void GradientDescent::ottimizza(ARMA* modello, std::unique_ptr<std::vector<doubl
 		sommay += errore*dy;
 		var += pow(errore, 2);
 	}
-	modello->setC(modello->getC() - (alpha*sommac));
-	modello->setA(modello->getA() - (alpha*sommay));
+	modello->setC(modello->getC() - (alpha*sommac/n));
+	modello->setA(modello->getA() - (alpha*sommay/n));
 	modello->setVarianza(var/(n-1));
+
 	ottimizza(modello, dati, n, iterazioni-1, alpha);
 }
 
@@ -74,7 +75,7 @@ void GradientDescent::ottimizza(AR* modello, std::unique_ptr<std::vector<double>
 		var += pow(errore, 2);
 	}
 
-	modello->setA(modello->getA() - (alpha*sommay));
+	modello->setA(modello->getA() - (alpha*sommay/n));
 	modello->setVarianza(var/(n-1));
 	ottimizza(modello, dati, n, iterazioni-1, alpha);
 }
@@ -99,7 +100,7 @@ void GradientDescent::ottimizza(MA* modello, std::unique_ptr<std::vector<double>
 		var += pow(errore, 2);
 	}
 
-	modello->setC(modello->getC() - (alpha*sommac));
+	modello->setC(modello->getC() - (alpha*sommac/n));
 	modello->setVarianza(var/(n-1));
 	ottimizza(modello, dati, n, iterazioni-1, alpha);
 }
@@ -124,7 +125,7 @@ void GradientDescent::ottimizza(ARMAX* modello, std::unique_ptr<std::vector<doub
 		dy = -(*it) - modello->getC()*dy;
 		du = -(*jt) - modello->getC()*du;
 		derrore = -errore - modello->getC()*derrore;
-		errore = (*(it+1)) - modello->previsioneAdUnPasso((double)(*it), (double)(*jt));
+		errore = (*(it+1)) - modello->previsioneAdUnPasso((*it), (*jt));
 
 		sommac += errore*derrore;
 		sommay += errore*dy;
@@ -132,9 +133,9 @@ void GradientDescent::ottimizza(ARMAX* modello, std::unique_ptr<std::vector<doub
 		var += pow(errore, 2);
 	}
 
-	modello->setC(modello->getC() - (alpha*sommac));
-	modello->setA(modello->getA() - (alpha*sommay));
-	modello->setB(modello->getB() - (alpha*sommau));
+	modello->setC(modello->getC() - (alpha*sommac/n));
+	modello->setA(modello->getA() - (alpha*sommay/n));
+	modello->setB(modello->getB() - (alpha*sommau/n));
 	modello->setVarianza(var/(n-1));
 	ottimizza(modello, dati, ingresso, n, iterazioni-1, alpha);
 }
@@ -156,7 +157,7 @@ void GradientDescent::ottimizza(X* modello, std::unique_ptr<std::vector<double>>
 		sommab += errore*db;
 	}
 
-	modello->setB(modello->getB() - (alpha*sommab));
+	modello->setB(modello->getB() - (alpha*sommab/n));
 	ottimizza(modello, dati, ingresso, n, iterazioni-1, alpha);
 }
 

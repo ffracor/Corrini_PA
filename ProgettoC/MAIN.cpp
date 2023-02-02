@@ -53,7 +53,7 @@ template <typename T> shared_ptr<vector<double>> simulaModello(T modello, int n,
 
 int main()
 {
-	int n = 5000; //numero di dati
+	int n = 10000; //numero di dati
 	//creo uno unique pointer per salvarci la realizzazione dei dati
 	unique_ptr<vector<double>> y = std::make_unique<vector<double>>(n);
 	AR crea(0.5, 1, 2); //creo un modello AR con il costruttore parametrizzato
@@ -95,6 +95,7 @@ int main()
 	//creazione e simulazione di un modello armax
 	cout<<endl<<"Sistema ARMAX che usa come ingresso l'output del sistema precedente";
 	ARMAX armax(0.3, 0.8, 0.2, 0, 1);
+
 	armax.stampaProcesso();
 
 	//utilizzo il vettore y precedente come ingresso esogeno per l'armax

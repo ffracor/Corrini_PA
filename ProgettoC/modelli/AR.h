@@ -29,7 +29,7 @@ class AR: private ARMA
 	double calcolaVarianza();
 	double calcolaAutoCovarianza(int tau);
 
-	void stimaParametri(std::unique_ptr<std::vector<double>> &y, int n, int iterazioni = 250, double alpha = 0.00001);
+	void stimaParametri(std::unique_ptr<std::vector<double>> &y, int n, int iterazioni = 250, double alpha = 0.1);
 	double previsioneAdUnPasso(double yt);
 	double simulaModello(double values[] = NULL);
 };
